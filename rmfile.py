@@ -24,8 +24,8 @@ try:
         # 取得當下時間，timestamp
         right_date = get_datetime()
         for path in file_path:
-            patten = re.compile("^\/")
-            if patten.match(path)
+            patten = re.compile("^/")
+            if patten.match(path):
                 # 切換目錄
                 os.chdir(path.strip())
                 # 撈目錄底下的檔案們
@@ -34,8 +34,9 @@ try:
                 for file in file_list:
                     if fnmatch.fnmatch(file, "*.bz2"):
                         file_date = datetime.date.fromisoformat(
-                            time.strftime('%Y-%m-%d',
-                                            time.localtime(os.path.getmtime(file))))
+                            time.strftime(
+                                '%Y-%m-%d',
+                                time.localtime(os.path.getmtime(file))))
                         if (right_date - file_date).days >= get_removeday():
                             os.remove(file)
                             print("rm down")
